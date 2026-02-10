@@ -12,6 +12,10 @@ terraform {
     }
 }
 
+module "network" {
+    source = "./resources"
+}
+
 
 data "tencentcloud_availability_regions" "test" {}
 
