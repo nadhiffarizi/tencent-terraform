@@ -1,3 +1,9 @@
+provider "tencentcloud" {
+    region = var.region_name
+    secret_id = var.secret_id
+    secret_key = var.secret_key
+}
+
 terraform {
     required_providers {
         tencentcloud = {
@@ -6,14 +12,8 @@ terraform {
     }
 }
 
+
 data "tencentcloud_availability_regions" "test" {}
-
-provider "tencentcloud" {
-    region = "ap-guangzhou"
-    secret_id = var.secret_id
-    secret_key = var.secret_key
-}
-
 
 
 output "hello_world_test" {

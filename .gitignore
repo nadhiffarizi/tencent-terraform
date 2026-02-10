@@ -12,6 +12,7 @@ secret.tfvars
 terraform.tfstate
 terraform.tfstate.backup
 terraform.tfstate.lock.info
+backend_backup.tf
 
 # --- Crash Logs ---
 crash.log
