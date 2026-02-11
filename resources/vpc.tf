@@ -1,5 +1,5 @@
 resource "tencentcloud_vpc" "test_vpc" { 
-    cidr_block = "10.0.0.0/8"
+    cidr_block = "10.0.0.0/16"
     name = "nadhif_vpc_test"
     tags = {
         "owner" = "nadhif"
