@@ -1,7 +1,5 @@
 provider "tencentcloud" {
-    region = var.region_name
-    secret_id = var.secret_id
-    secret_key = var.secret_key
+    region = "ap-jakarta"
 }
 
 terraform {
@@ -10,10 +8,16 @@ terraform {
             source = "tencentcloudstack/tencentcloud"
         }
     }
+    backend "cos" {
+        region = "ap-jakarta"
+        bucket = "nadhif-lgsm-tf-1385797712" 
+        prefix = "terraform/state"           
+    }
 }
 
+
 module "network" {
-    source = "./resources"
+    source = "./network"
 }
 
 
