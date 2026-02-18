@@ -37,6 +37,16 @@ resource "tencentcloud_security_group_rule" "nadhif_sgrule_public-sg" {
   description = "Allow ingress from internet"
 }
 
+resource "tencentcloud_security_group_rule" "nadhif_sgrule_public-sg-ssh" {
+  security_group_id = tencentcloud_security_group.nadhif_sg_public-sg.id
+  type = "ingress"
+  port_range = "22" # SSH
+  ip_protocol = "TCP"
+  cidr_ip = "0.0.0.0/0"
+  policy = "accept"
+  description = "Allow ingress from internet for ssh"
+}
+
 # App traffic
 resource "tencentcloud_security_group_rule" "nadhif_sgrule_be-app-sg-publicsn" {
   security_group_id = tencentcloud_security_group.nadhif_sg_be-app-sg.id

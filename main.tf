@@ -20,6 +20,13 @@ module "network" {
     source = "./network"
 }
 
+module "compute" {
+    source = "./compute"
+    network_vpc_id = module.network.vpc_test
+    sg_public = module.network.nadhif_sg_public-sg
+    subnet_public_az-1 = module.network.nadhif_subnet_public_az-1
+}
+
 
 data "tencentcloud_availability_regions" "test" {}
 
