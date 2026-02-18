@@ -2,7 +2,7 @@ resource "tencentcloud_nat_gateway" "nadhif_nat_test" {
   name = "nadhif_nat_test"
   vpc_id = tencentcloud_vpc.test_vpc.id
   subnet_id = tencentcloud_subnet.nadhif_subnet_public-az1.id
-  assigned_eip_set =[ tencentcloud_eip.nadhif_eip_test.id ]
+  assigned_eip_set =[ tencentcloud_eip.nadhif_eip_test.public_ip ]
   tags = {
     "owner" = "nadhif"
     "owner" = "nadhiffarizi@lgsinarmas.com" 
