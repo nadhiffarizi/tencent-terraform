@@ -47,6 +47,25 @@ resource "tencentcloud_security_group_rule" "nadhif_sgrule_public-sg-ssh" {
   description = "Allow ingress from internet for ssh"
 }
 
+resource "tencentcloud_security_group_rule" "nadhif_sgrule_public-sg-out-tcp" {
+  security_group_id = tencentcloud_security_group.nadhif_sg_public-sg.id
+  type = "egress"
+  port_range = "443" 
+  ip_protocol = "TCP"
+  cidr_ip = "0.0.0.0/0"
+  policy = "accept"
+  description = "Allow egress to internet for https request"
+}
+
+resource "tencentcloud_security_group_rule" "nadhif_sgrule_public-sg-out-icmp" {
+  security_group_id = tencentcloud_security_group.nadhif_sg_public-sg.id
+  type = "egress"
+  ip_protocol = "ICMP"
+  cidr_ip = "0.0.0.0/0"
+  policy = "accept"
+  description = "Allow egress to internet for pinging"
+}
+
 # App traffic
 resource "tencentcloud_security_group_rule" "nadhif_sgrule_be-app-sg-publicsn" {
   security_group_id = tencentcloud_security_group.nadhif_sg_be-app-sg.id
@@ -68,6 +87,25 @@ resource "tencentcloud_security_group_rule" "nadhif_sgrule_be-app-sg-ssh" {
   description = "Allow SSH from internet"
 }
 
+resource "tencentcloud_security_group_rule" "nadhif_sgrule_be-app-sg-out-tcp" {
+  security_group_id = tencentcloud_security_group.nadhif_sg_be-app-sg.id
+  type = "egress"
+  port_range = "443" 
+  ip_protocol = "TCP"
+  cidr_ip = "0.0.0.0/0"
+  policy = "accept"
+  description = "Allow egress to internet for https request"
+}
+
+resource "tencentcloud_security_group_rule" "nadhif_sgrule_be-app-sg-out-icmp" {
+  security_group_id = tencentcloud_security_group.nadhif_sg_be-app-sg.id
+  type = "egress"
+  ip_protocol = "ICMP"
+  cidr_ip = "0.0.0.0/0"
+  policy = "accept"
+  description = "Allow egress to internet for pinging"
+}
+
 # DB traffic
 resource "tencentcloud_security_group_rule" "nadhif_sgrule_db-app-sg-in" {
   security_group_id = tencentcloud_security_group.db-sg.id
@@ -77,4 +115,23 @@ resource "tencentcloud_security_group_rule" "nadhif_sgrule_db-app-sg-in" {
   source_sgid = tencentcloud_security_group.nadhif_sg_be-app-sg.id
   policy = "accept"
   description = "Allow ingress from app sg"
+}
+
+resource "tencentcloud_security_group_rule" "nadhif_sgrule_db-out-tcp" {
+  security_group_id = tencentcloud_security_group.db-sg.id
+  type = "egress"
+  port_range = "443" 
+  ip_protocol = "TCP"
+  cidr_ip = "0.0.0.0/0"
+  policy = "accept"
+  description = "Allow egress to internet for https request"
+}
+
+resource "tencentcloud_security_group_rule" "nadhif_sgrule_db-out-icmp" {
+  security_group_id = tencentcloud_security_group.db-sg.id
+  type = "egress"
+  ip_protocol = "ICMP"
+  cidr_ip = "0.0.0.0/0"
+  policy = "accept"
+  description = "Allow egress to internet for pinging"
 }
