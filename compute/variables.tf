@@ -13,3 +13,8 @@ variable "sg_public" {
   type = string
   description = "public security group"
 }
+
+variable "cvm_cos_role" {
+  type = string
+  description = "cvm role for private cos"
+}

@@ -21,33 +21,12 @@ resource "tencentcloud_instance" "nadhif_cvm_public" {
    # sg
    orderly_security_groups = [ var.sg_public ]
 
+   # role
+   cam_role_name = var.cvm_cos_role
+
    # tagging
    tags = {
     "owner" = "nadhif"
     "owner_email" = "nadhiffarizi@lgsinarmas.com" 
    }
-}
-
-resource "tencentcloud_cam_role" "cvm_cos_role" {
-  name        = "CVM-COS-Access-Role"
-  document    = <<EOF
-{
-  "version": "2.0",
-  "statement": [
-    {
-      "action": "name/sts:AssumeRole",
-      "effect": "allow",
-      "principal": {
-        "service": ["cvm.qcloud.com"]
-      }
-    }
-  ]
-}
-EOF
-  description = "Role for CVM to access COS buckets"
-}
-
-resource "tencentcloud_cam_role_policy_attachment" "attach_cos_policy" {
-  role_id   = tencentcloud_cam_role.cvm_cos_role.id
-  policy_id = "219188" # policy id for COS full access 
 }
