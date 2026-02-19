@@ -46,6 +46,18 @@ resource "tencentcloud_subnet" "nadhif_subnet_private-az2" {
     }
 }
 
+# public routing
+resource "tencentcloud_route_table_association" "nadhif_rta_public-sn-az1" {
+  route_table_id = tencentcloud_route_table.nadhif_rt_public-rt.id
+  subnet_id = tencentcloud_subnet.nadhif_subnet_public-az1.id
+}
+
+resource "tencentcloud_route_table_association" "nadhif_rta_public-sn-az2" {
+  route_table_id = tencentcloud_route_table.nadhif_rt_public-rt.id
+  subnet_id = tencentcloud_subnet.nadhif_subnet_public-az2.id
+}
+
+
 # private routing
 resource "tencentcloud_route_table_association" "nadhif_rta_private-sn-az1" {
   route_table_id = tencentcloud_route_table.nadhif_rt_private-rt.id
