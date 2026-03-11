@@ -1,7 +1,7 @@
 # fetch available ubuntu image
 data "tencentcloud_images" "default" {
     image_type = [ "PUBLIC_IMAGE" ]
-    os_name = "Ubuntu Server 24.04 LTS 64bit"
+    os_name = "Ubuntu Server 22.04 LTS 64bit"
 } 
 
 data "tencentcloud_instance_types" "types" {

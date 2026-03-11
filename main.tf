@@ -48,6 +48,14 @@ module "compute" {
     cvm_cos_role = module.cam.nadhif_role_cvm-cos-rolename
 }
 
+module "db" {
+  source = "./database"
+  network_vpc_id = module.network.vpc_test
+  subnet_id = module.network.nadhif_subnet_private_az-1
+  availability_zone = "ap-jakarta-1"
+  sg_db_id = module.network.nadhif_sg_db
+}
+
 
 data "tencentcloud_availability_regions" "test" {}
 

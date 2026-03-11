@@ -107,10 +107,23 @@ resource "tencentcloud_security_group_rule" "nadhif_sgrule_be-app-sg-out-icmp" {
 }
 
 # DB traffic
-resource "tencentcloud_security_group_rule" "nadhif_sgrule_db-app-sg-in" {
+
+# postgresql in
+resource "tencentcloud_security_group_rule" "nadhif_sgrule_db-pgsql-sg-in" {
   security_group_id = tencentcloud_security_group.db-sg.id
   type = "ingress"
   port_range = "5432" # postgres db
+  ip_protocol = "TCP"
+  source_sgid = tencentcloud_security_group.nadhif_sg_be-app-sg.id
+  policy = "accept"
+  description = "Allow ingress from app sg"
+}
+
+# redis in
+resource "tencentcloud_security_group_rule" "nadhif_sgrule_db-redis-sg-in" {
+  security_group_id = tencentcloud_security_group.db-sg.id
+  type = "ingress"
+  port_range = "8192" # redis db
   ip_protocol = "TCP"
   source_sgid = tencentcloud_security_group.nadhif_sg_be-app-sg.id
   policy = "accept"
