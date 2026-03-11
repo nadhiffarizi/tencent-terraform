@@ -27,6 +27,10 @@ module "network" {
     source = "./network"
 }
 
+module "keypair" {
+    source = "./keypair"
+}
+
 module "cam" {
   source = "./cam_policy"
   app_id = local.app_id
@@ -46,6 +50,7 @@ module "compute" {
     sg_public = module.network.nadhif_sg_public-sg
     subnet_public_az-1 = module.network.nadhif_subnet_public_az-1
     cvm_cos_role = module.cam.nadhif_role_cvm-cos-rolename
+    private_key = module.keypair.private_key_id
 }
 
 module "db" {

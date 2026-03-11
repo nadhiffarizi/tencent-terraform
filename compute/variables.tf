@@ -18,3 +18,8 @@ variable "cvm_cos_role" {
   type = string
   description = "cvm role for private cos"
 }
+
+variable "private_key" {
+  type = string
+  description = "secret key pair for the instance"
+}

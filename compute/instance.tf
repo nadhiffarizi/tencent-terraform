@@ -24,6 +24,9 @@ resource "tencentcloud_instance" "nadhif_cvm_public" {
    # role
    cam_role_name = var.cvm_cos_role
 
+   # keypair
+   key_ids =[ var.private_key ]
+
    # tagging
    tags = {
     "owner" = "nadhif"
