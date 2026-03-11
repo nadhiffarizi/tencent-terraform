@@ -61,6 +61,11 @@ module "db" {
   sg_db_id = module.network.nadhif_sg_db
 }
 
+output "recovery_key" {
+  value     = module.keypair.private_key
+  sensitive = true
+}
+
 
 data "tencentcloud_availability_regions" "test" {}
 
