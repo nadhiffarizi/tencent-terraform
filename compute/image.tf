@@ -7,7 +7,7 @@ data "tencentcloud_images" "default" {
 data "tencentcloud_instance_types" "types" {
    filter {
     name   = "instance-family"
-    values = ["S5"]
+    values = ["S5", "SA2"]
   }
   cpu_core_count = 2
   memory_size    = 2
